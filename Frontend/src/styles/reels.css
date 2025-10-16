@@ -1,0 +1,194 @@
+@import './theme.css';
+
+/* Page container ensures full viewport and background */
+.reels-page {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+}
+
+/* Vertical feed with snap scrolling */
+.reels-feed {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent content from spilling out */
+  height: 80vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Each reel takes full container */
+.reel {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  background: #000; /* fallback while video loads */
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.reel-video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.reel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cover container */
+  object-position: center;
+  background: #000;
+  border-radius: 8px;
+}
+
+/* Overlay: content sits on top of video */
+.reel-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end; /* content near bottom */
+  pointer-events: none; /* allow click-through except controls */
+}
+
+/* Subtle top-to-bottom gradient so text is readable on any video */
+.reel-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.25) 0%,
+    rgba(0,0,0,0.05) 30%,
+    rgba(0,0,0,0.35) 65%,
+    rgba(0,0,0,0.65) 100%
+  );
+  border-radius: 8px;
+}
+
+.reel-content {
+  position: relative;
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: auto; /* enable button click */
+}
+
+/* Show full description with better formatting */
+.reel-description {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+  font-size: 1rem;
+  line-height: 1.3;
+  max-width: 90ch;
+  /* Preserve whitespace and wrap text */
+  white-space: pre-wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.reel-description button {
+  background: none;
+  border: none;
+  color: #ff6b35;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  text-decoration: underline;
+}
+
+.reel-description button:hover {
+  color: #ff8c5a;
+}
+
+.reel-btn {
+  align-self: flex-start;
+  background: linear-gradient(90deg, #ff6b35, #f7931e);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.reel-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.reel-btn:active { transform: translateY(1px); }
+.reel-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* Desktop tweaks */
+@media (min-width: 768px) {
+  .reel-content { padding: 36px; }
+  .reel-description { font-size: 1.05rem; max-width: 70ch; }
+}
+
+/* Right-side vertical actions (like, bookmark, comments) */
+.reel-actions {
+  position: absolute;
+  right: 10px;
+  bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  pointer-events: auto;
+}
+
+.reel-action {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, #000 35%, transparent);
+  backdrop-filter: blur(2px);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.15);
+  box-shadow: var(--shadow-md);
+}
+
+.reel-action:active { transform: translateY(1px); }
+
+.reel-action__count {
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+}
+
+.reel-action-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+}
+
+.empty-state{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  height: 100%;
+  text-align: center;
+}

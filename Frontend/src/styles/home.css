@@ -1,0 +1,23 @@
+/* Home page specific styles */
+.refresh-button-container {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+
+.refresh-button {
+  background: linear-gradient(90deg, #ff6b35, #f7931e);
+  color: white;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.refresh-button:hover {
+  transform: translateY(-2px);
+}

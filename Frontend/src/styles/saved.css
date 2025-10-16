@@ -1,0 +1,31 @@
+.saved-page {
+  padding-top: 80px;
+  padding: 80px 1rem 4rem;
+  color: white;
+  width: 100%;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+}
+
+.saved-page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.saved-page .empty-state {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.saved-page .empty-state p {
+  margin: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.saved-page .empty-state p:first-child {
+  font-size: 1.2rem;
+  font-weight: 500;
+}

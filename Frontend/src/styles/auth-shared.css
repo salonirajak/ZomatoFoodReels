@@ -1,0 +1,284 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+}
+
+.auth-container {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent content from spilling out */
+}
+
+/* Compact form styles for food partner registration */
+.auth-container.compact-form {
+  padding: 1.25rem;
+  max-width: 380px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #ff6b35, #f7931e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.auth-header p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+.auth-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.auth-option-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-option-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+.auth-option-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.auth-option-card h3 {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.auth-option-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+/* Compact form styles */
+.auth-form.compact-form {
+  gap: 0.6rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Compact form group styles */
+.form-group.compact {
+  gap: 0.2rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-group input {
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0; /* Prevents overflow in flex containers */
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ff6b35;
+}
+
+.form-group input.error {
+  border-color: #ff4757;
+}
+
+.error-text {
+  color: #ff4757;
+  font-size: 0.8rem;
+  margin-top: 0.15rem;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.auth-button {
+  background: linear-gradient(90deg, #ff6b35, #f7931e);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin-top: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Compact button styles */
+.auth-button.compact {
+  padding: 0.55rem;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.auth-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  padding: 1.5rem 0 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 16px 16px;
+  margin: 2rem -2rem -2rem;
+  box-sizing: border-box;
+}
+
+/* Compact footer styles */
+.auth-footer.compact {
+  margin: 1.25rem -1.25rem -1.25rem;
+  padding: 0.75rem 0 0.5rem;
+  font-size: 0.8rem;
+}
+
+.auth-footer p {
+  margin: 0.3rem 0;
+}
+
+.auth-footer a {
+  color: #ff6b35;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+.auth-alt-action {
+  text-align: center;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.auth-alt-action a {
+  color: #ff6b35;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-alt-action a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  background: rgba(255, 71, 87, 0.2);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  color: #ff4757;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+.auth-hint {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  margin-top: 0.1rem;
+  word-wrap: break-word;
+}
+
+/* Form row for two-column layout */
+.form-row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+.form-row .form-group {
+  flex: 1;
+  min-width: 0; /* Prevents flex items from overflowing */
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 1.5rem;
+  }
+  
+  .auth-container.compact-form {
+    padding: 1rem;
+    max-width: 350px;
+  }
+  
+  .auth-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  /* On mobile, stack the form rows */
+  .form-row {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+}

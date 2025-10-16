@@ -1,0 +1,88 @@
+@import './theme.css';
+
+.form-container {
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  max-width: 350px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);
+  font-family: var(--font-family);
+  transition: background 0.3s, color 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  .form-container {
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark);
+    border-color: var(--color-border);
+  }
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--input-padding);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+}
+
+.form-btn {
+  width: 100%;
+  padding: 0.75rem 0;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+
+.form-btn:hover {
+  background: var(--color-secondary);
+  color: var(--color-text-light);
+}
+
+.form-link {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.form-link:hover {
+  color: var(--color-secondary);
+}
