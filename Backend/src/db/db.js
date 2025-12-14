@@ -24,10 +24,10 @@ async function addInitialTestData() {
         // Check if mock data already exists (import mock-db to initialize it)
         const mockDb = require('./mock-db');
         const mockItems = mockDb.inMemoryFoodItems;
-        console.log('Mock items available:', mockItems.length);
+        console.log('Mock items available:', mockItems ? mockItems.length : 0);
         
         // If we have mock items, don't add test data
-        if (mockItems.length > 0) {
+        if (mockItems && mockItems.length > 0) {
             console.log('Using existing mock data instead of creating new test data');
             return;
         }
@@ -167,7 +167,7 @@ function connectDB(){
         // Import mock-db to initialize mock data
         console.log('Importing mock-db to initialize mock data...');
         const mockDb = require('./mock-db');
-        console.log('Mock data initialized. Food items:', mockDb.inMemoryFoodItems.length);
+        console.log('Mock data initialized. Food items:', mockDb.inMemoryFoodItems ? mockDb.inMemoryFoodItems.length : 0);
         
         // Set in-memory flag on all models
         console.log('Setting useInMemory flag to true on all models');

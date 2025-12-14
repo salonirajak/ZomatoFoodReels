@@ -12,28 +12,33 @@ connectDB();
 
 // Start server with error handling and dynamic port selection
 let PORT = process.env.PORT || 3000;
+console.log(`Attempting to start server on port ${PORT}`);
 
-const server = app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+// Try to start server with error handling and dynamic port selection
+function startServer() {
+    const server = app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+        console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    });
 
-// Handle server errors
-server.on('error', (err) => {
-    console.error('Server error:', err);
-    if (err.code === 'EADDRINUSE') {
-        console.log(`Port ${PORT} is already in use. Trying ${PORT + 1}...`);
-        PORT++;
-        setTimeout(() => {
-            server.close(() => {
-                app.listen(PORT, () => {
-                    console.log(`Server is running on port ${PORT}`);
-                    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-                });
-            });
-        }, 1000);
-    }
-});
+    // Handle server errors
+    server.on('error', (err) => {
+        console.error('Server error:', err);
+        if (err.code === 'EADDRINUSE') {
+            console.log(`Port ${PORT} is already in use. Trying ${PORT + 1}...`);
+            PORT++;
+            setTimeout(startServer, 1000);
+        }
+    });
+    
+    // Log the actual port the server is listening on
+    server.on('listening', () => {
+        const address = server.address();
+        console.log(`Server is now listening on port ${address.port}`);
+    });
+}
+
+startServer();
 
 // Graceful shutdown
 process.on('SIGTERM', () => {

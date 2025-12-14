@@ -116,10 +116,10 @@ const foodModel = {
             if (options.populate) {
                 results = results.map(item => ({
                     ...item,
-                    foodpartner: {
+                    foodpartner: item.foodpartner ? {
                         _id: item.foodpartner,
                         name: "Food Partner" // Mock name
-                    }
+                    } : null
                 }));
             }
             
@@ -211,7 +211,17 @@ foodModel.populate = async function(docs, options) {
             };
         }
     } else {
-        return await getFoodModel().populate(docs, options);
+        // For MongoDB, we need to use the actual populate method
+        const model = getFoodModel();
+        // If docs is an array, we need to create a query and populate
+        if (Array.isArray(docs)) {
+            // Create a query with the IDs
+            const ids = docs.map(doc => doc._id);
+            return await model.find({ _id: { $in: ids } }).populate(options.path);
+        } else {
+            // For single document
+            return await model.findById(docs._id).populate(options.path);
+        }
     }
 };
 

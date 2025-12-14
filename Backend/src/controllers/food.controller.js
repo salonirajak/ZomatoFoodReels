@@ -131,8 +131,15 @@ async function getFoodItems(req,res) {
         // Add more detailed logging
         console.log('About to call foodModel.find');
         let foodItems = await foodModel.find({});
+        console.log('Found', foodItems.length, 'food items before populate');
         // Populate foodpartner data
-        foodItems = await foodModel.populate(foodItems, { path: 'foodpartner', select: 'name _id' });
+        try {
+            foodItems = await foodModel.populate(foodItems, { path: 'foodpartner', select: 'name _id' });
+            console.log('Populated food items:', foodItems.length);
+        } catch (populateError) {
+            console.error('Error populating food items:', populateError);
+            // If populate fails, continue with original food items
+        }
         console.log('Found', foodItems.length, 'food items');
         
         // Process video URLs to ensure they have the correct format

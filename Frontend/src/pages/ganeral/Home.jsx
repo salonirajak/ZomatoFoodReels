@@ -201,6 +201,8 @@ const Home = () => {
                 onLike={likeVideo}
                 onSave={saveVideo}
                 emptyMessage="No videos available."
+                restrictVideoActions={false}
+                showControls={true}
             />
         </div>
     )

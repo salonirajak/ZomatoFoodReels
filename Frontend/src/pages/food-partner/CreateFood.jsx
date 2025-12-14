@@ -259,7 +259,7 @@ const CreateFood = () => {
                                 maxLength={100}
                                 style={{fontSize: '0.9rem'}} /* Slightly smaller font */
                             />
-                            <div style={{fontSize: '0.7rem', color: description.length > 450 ? '#ff6b35' : 'rgba(255, 255, 255, 0.7)', marginTop: '0.25rem', textAlign: 'right'}}>
+                            <div style={{fontSize: '0.7rem', color: '#fff', marginTop: '0.25rem', textAlign: 'right'}}>
                                 {name.length}/100 characters
                             </div>
                         </div>
@@ -276,7 +276,7 @@ const CreateFood = () => {
                                 maxLength={500}
                                 style={{fontSize: '0.9rem'}} /* Slightly smaller font */
                             />
-                            <div style={{fontSize: '0.7rem', color: description.length > 450 ? '#ff6b35' : 'rgba(255, 255, 255, 0.7)', marginTop: '0.25rem', textAlign: 'right'}}>
+                            <div style={{fontSize: '0.7rem', color: description.length > 450 ? '#ff6b35' : '#fff', marginTop: '0.25rem', textAlign: 'right'}}>
                                 {description.length}/500 characters
                             </div>
                         </div>

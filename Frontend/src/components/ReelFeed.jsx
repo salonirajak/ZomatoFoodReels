@@ -8,7 +8,7 @@ import API_BASE_URL from '../config/api'
 // - onLike: (item) => void | Promise<void>
 // - onSave: (item) => void | Promise<void>
 // - emptyMessage: string
-const ReelFeed = ({ items = [], onLike, onSave, emptyMessage = 'No videos yet.' }) => {
+const ReelFeed = ({ items = [], onLike, onSave, emptyMessage = 'No videos yet.', restrictVideoActions = true, showControls = false }) => {
   const videoRefs = useRef(new Map())
   const [expandedDescriptions, setExpandedDescriptions] = useState({})
   
@@ -101,9 +101,9 @@ const ReelFeed = ({ items = [], onLike, onSave, emptyMessage = 'No videos yet.' 
                   playsInline
                   loop
                   preload="metadata"
-                  controls={false}
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
+                  controls={showControls}
+                  {...(restrictVideoActions ? { disablePictureInPicture: true } : {})}
+                  {...(restrictVideoActions ? { controlsList: 'nodownload nofullscreen noremoteplayback' } : {})}
                 />
                 
                 {/* Overlay content */}
