@@ -1,3 +1,9 @@
+Frontend Live Link  
+https://zomato-food-reels.vercel.app/
+
+Backend API  
+https://zomatofoodreels-4.onrender.com
+
 # FoodReels - Food Discovery App
 
 A TikTok-style food discovery application that allows users to browse, like, and save short food videos, while food partners can upload their own content.
