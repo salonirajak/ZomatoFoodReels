@@ -43,10 +43,11 @@ async function registerUser(req,res){
             id:user._id,
         }, process.env.JWT_SECRET)
         
+        // cross-site cookie for remote front end
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
         })
 
@@ -112,7 +113,7 @@ async function loginUser(req,res) {
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
         })
 
@@ -192,7 +193,7 @@ async function registerFoodPartner(req,res){
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
         })
         
@@ -277,7 +278,12 @@ async function loginFoodPartner(req,res){
             id:foodpartner._id,
         }, process.env.JWT_SECRET)
         
-        res.cookie("token",token)
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'none',
+            maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        });
         res.status(200).json({
             message:"Food partner logged in successfully",
             foodpartner:{
@@ -334,8 +340,8 @@ async function checkAuthStatus(req, res) {
             });
         }
         
-        // No authentication found
-        return res.status(401).json({
+        // No authentication found – return 200 so client treats this as a normal 'not logged in' state
+        return res.status(200).json({
             isAuthenticated: false,
             message: "Not authenticated"
         });

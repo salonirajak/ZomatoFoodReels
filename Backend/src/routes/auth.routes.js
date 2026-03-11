@@ -15,6 +15,7 @@ router.post('/food-partner/login', authController.loginFoodPartner);
 router.get('/food-partner/logout', authController.logoutFoodPartner);
 
 // auth status check (can be accessed by either user or food partner)
-router.get('/status', authEitherMiddleware, authController.checkAuthStatus);
+// no middleware here – we want to return a simple 200/false when not logged in
+router.get('/status', authController.checkAuthStatus);
 
 module.exports = router;

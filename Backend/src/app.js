@@ -38,8 +38,18 @@ app.use((req, res, next) => {
 });
 
 // Configure CORS with more specific options
+// Allow localhost during development and optionally a frontend URL from environment for production
+const corsOrigins = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175'
+];
+if (process.env.FRONTEND_URL) {
+    corsOrigins.push(process.env.FRONTEND_URL);
+}
+
 const corsOptions = {
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'],
+    origin: corsOrigins,
     credentials: true,
     optionsSuccessStatus: 200, // Some legacy browsers choke on 204
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
