@@ -192,10 +192,21 @@ const Home = () => {
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
             <Header onLogout={handleLogout} />
             {error && <div className="error-message">{error}</div>}
-            {loading && <div className="loading-message">Loading videos...</div>}
-            <div className="refresh-button-container">
-                <button onClick={fetchVideos} className="refresh-button">Refresh Videos</button>
-            </div>
+
+     {loading ? (
+         <div className="loading-message">Loading videos...</div>
+     ) : (
+      <ReelFeed
+      items={videos}
+      onLike={likeVideo}
+      onSave={saveVideo}
+      emptyMessage="No videos available."
+    />
+    )}
+
+    <div className="refresh-button-container">
+     <button onClick={fetchVideos} className="refresh-button">Refresh Videos</button>
+      </div>
             <ReelFeed
                 items={videos}
                 onLike={likeVideo}
