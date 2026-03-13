@@ -59,18 +59,22 @@ router.get('/', foodController.getFoodItems);
 // router.get('/', authMiddleware.authUserMiddleware, foodController.getFoodItems);
 
 // Add route to get a specific food item by ID
-router.get('/:id', foodController.getFoodItemById);
-
 router.post('/like',
     authMiddleware.authUserMiddleware,
-    foodController.likeFood)
+    foodController.likeFood
+);
 
 router.post('/save',
     authMiddleware.authUserMiddleware,
-    foodController.saveFood)
+    foodController.saveFood
+);
 
 router.get('/save',
     authMiddleware.authUserMiddleware,
-    foodController.getSaveFood)
+    foodController.getSaveFood
+);
+
+// ID route hamesha last me hona chahiye
+router.get('/:id', foodController.getFoodItemById);
 
 module.exports = router
