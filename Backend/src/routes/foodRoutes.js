@@ -1,80 +1,56 @@
-const express = require('express');
-const foodController = require("../controllers/food.controller")
-const authMiddleware = require("../middleware/auth.middleware")
+const express = require("express");
 const router = express.Router();
-const multer = require('multer');
+const multer = require("multer");
+const path = require("path");
 
-// Configure multer with limits and file filter
-const upload = multer({
-    storage: multer.memoryStorage(),
-    limits: {
-        fileSize: 50 * 1024 * 1024, // 50MB limit
-    },
-    fileFilter: (req, file, cb) => {
-        // Accept only video files
-        if (file.mimetype.startsWith('video/')) {
-            cb(null, true);
-        } else {
-            cb(new Error('Only video files are allowed'));
-        }
-    }
+const Food = require("../models/food.model");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
 });
 
-// Error handling middleware for multer
-const handleMulterError = (err, req, res, next) => {
-    if (err instanceof multer.MulterError) {
-        if (err.code === 'LIMIT_FILE_SIZE') {
-            return res.status(400).json({
-                message: 'File size too large. Maximum file size is 50MB.'
-            });
-        }
-        return res.status(400).json({
-            message: 'File upload error: ' + err.message
-        });
-    } else if (err) {
-        return res.status(400).json({
-            message: err.message
-        });
-    }
-    next();
-};
+const upload = multer({ storage });
 
-/* POST /api/food/[protected]*/
-router.post('/', 
-    upload.single('video'), 
-    handleMulterError,
-    authMiddleware.authFoodPartnerMiddleware, 
-    (req, res, next) => {
-        console.log('Received request to create food');
-        console.log('Request file:', req.file);
-        console.log('Request body:', req.body);
-        next();
-    }, 
-    foodController.createFood
-);
+// upload food
+router.post("/", upload.single("video"), async (req, res) => {
 
-/* GET /api/food/[public for testing, protected in production]*/
-// For production, uncomment the line below and comment out the line after
-router.get('/', foodController.getFoodItems);
-// router.get('/', authMiddleware.authUserMiddleware, foodController.getFoodItems);
+  try {
 
-// Add route to get a specific food item by ID
-router.post('/like',
-    authMiddleware.authUserMiddleware,
-    foodController.likeFood
-);
+    const food = new Food({
+      name: req.body.name,
+      description: req.body.description,
+      video: "/uploads/" + req.file.filename
+    });
 
-router.post('/save',
-    authMiddleware.authUserMiddleware,
-    foodController.saveFood
-);
+    await food.save();
 
-router.get('/save',
-    authMiddleware.authUserMiddleware,
-    foodController.getSaveFood
-);
+    res.json(food);
 
-// ID route hamesha last me hona chahiye
-router.get('/:id', foodController.getFoodItemById);
+  } catch (error) {
 
-module.exports = router
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
+
+});
+
+// get foods
+router.get("/", async (req, res) => {
+
+  const foods = await Food.find();
+
+  res.json({
+    foodItems: foods
+  });
+
+});
+
+module.exports = router;
