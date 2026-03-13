@@ -82,17 +82,24 @@ const FoodPartnerRegister = () => {
     setError('');
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/food-partner/register`, {
-        name: formData.businessName,
-        contactName: formData.contactName,
-        phone: formData.phone,
-        email: formData.email,
-        password: formData.password,
-        address: formData.address
-      }, { withCredentials: true });
-      
-      console.log(response.data);
-      navigate("/create-food");
+      const response = await axios.post(
+     `${API_BASE_URL}/api/auth/food-partner/register`,
+    {
+    name: formData.businessName,
+    contactName: formData.contactName,
+    phone: formData.phone,
+    email: formData.email,
+    password: formData.password,
+    address: formData.address
+  },
+    { withCredentials: true }
+);
+
+  console.log(response.data);
+
+// register ke baad login page par bhejo
+  navigate("/food-partner/login");
+
     } catch (error) {
       console.error("Registration error:", error);
       if (error.response?.data?.message) {
