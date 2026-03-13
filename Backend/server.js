@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser"); 
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
@@ -15,6 +16,7 @@ app.use(
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
 
 // Check env variable
 console.log("JWT_SECRET:", process.env.JWT_SECRET ? "Loaded" : "Not found");
