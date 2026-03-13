@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // static video folder
-app.use("/uploads", express.static("uploads"));
+
 
 // Check env variable
 console.log("JWT_SECRET:", process.env.JWT_SECRET ? "Loaded" : "Not found");
