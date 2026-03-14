@@ -2,7 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
+const connectDB = require("./src/db/db"); 
+
 const app = express();
+
+connectDB();  
 
 app.use(
   cors({
