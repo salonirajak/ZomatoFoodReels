@@ -17,8 +17,10 @@ app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const foodRoutes = require("./src/routes/foodRoutes");
+const authRoutes = require("./src/routes/authRoutes");
 
 app.use("/api/food", foodRoutes);
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("Server running");
