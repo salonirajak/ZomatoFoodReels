@@ -4,7 +4,13 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://zomato-food-reels.vercel.app",
+    credentials: true
+  })
+);
+
 app.use(express.json());
 
 // static folder for videos
