@@ -53,4 +53,34 @@ router.get("/", async (req, res) => {
 
 });
 
+// like food
+router.post("/like", async (req, res) => {
+  try {
+
+    const { foodId } = req.body;
+
+    const food = await Food.findById(foodId);
+
+    if (!food) {
+      return res.status(404).json({ message: "Food not found" });
+    }
+
+    food.likeCount += 1;
+
+    await food.save();
+
+    res.json({
+      message: "Video liked",
+      likeCount: food.likeCount
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
+});
+
 module.exports = router;
