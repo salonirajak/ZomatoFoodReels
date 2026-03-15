@@ -205,16 +205,11 @@ const Home = () => {
     )}
 
     <div className="refresh-button-container">
+        
      <button onClick={fetchVideos} className="refresh-button">Refresh Videos</button>
+
       </div>
-            <ReelFeed
-                items={videos}
-                onLike={likeVideo}
-                onSave={saveVideo}
-                emptyMessage="No videos available."
-                restrictVideoActions={false}
-                showControls={true}
-            />
+           
         </div>
     )
 }
